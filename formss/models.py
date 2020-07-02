@@ -11,9 +11,14 @@ class Monthly(models.Model):
     income = models.CharField(max_length =200,default=0)
     expenditure = models.CharField(max_length =200,default=0)
     amount = models.IntegerField(default=0)
+    def __str__(self):
+        return self.month
 
 
 class Balance(models.Model):
-    old_balance = models.IntegerField()
-    new_balance = models.IntegerField()
+    id = models.CharField(primary_key=True, max_length=20, blank=False)
+    old_balance = models.CharField(max_length =200,default=0)
+    # new_balance = models.CharField(max_length =200,default=0)
+    def __str__(self):
+        return self.old_balance
  

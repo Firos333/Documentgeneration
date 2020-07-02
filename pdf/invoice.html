@@ -41,7 +41,7 @@
         <div class='wrapper'>
             <div class='header'>
                 <h4>Miltek Technologies Pvt.Ltd </h4>
-                <p>{{month}} month Income & Expenditure Account sheet </p>
+                <p>{{last_month}} month Income & Expenditure Account sheet </p>
             </div>
         <div>
         <div class='details'>
@@ -52,9 +52,9 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col" >Sl.No</th>
-      <th scope="col"style="text-align:center" >Date</th>
-      <th scope="col"style="text-align:center" >Income</th>
-      <th scope="col"style="text-align:center" >Expenditure</th>
+      <th scope="col"style="text-align:left" >Date</th>
+      <th scope="col"style="text-align:left" >Income Details</th>
+      <th scope="col"style="text-align:left" >Expenditure Details</th>
       <th scope="col"style="text-align:center" >Amount &nbsp (Rs.) </th>
     </tr>
   </thead>
@@ -63,9 +63,9 @@
   
     <tr>
       <th scope="row">{{a}}</th>
-      <td scope="col"style="text-align:center">{{b}}</td>
-      <td scope="col"style="text-align:center">{{c}}</td>
-      <td scope="col"style="text-align:center" >{{d}}</td>
+      <td scope="col"style="text-align:left">{{b}}</td>
+      <td scope="col"style="text-align:left">{{c}}</td>
+      <td scope="col"style="text-align:left" >{{d}}</td>
       <td scope="col"style="text-align:center">{{e}} /-</td>
     </tr>
 
@@ -104,7 +104,7 @@
         <th></th>
         <th scope="col"style="text-align:left" ></th>
         <th scope="col"style="text-align:left" ></th>
-        <th scope="col"style="text-align:left" >PROFIT/LOSS</th>
+        <th scope="col"style="text-align:left" >Profit/Loss</th>
         <th scope="col"style="text-align:left" >{{profit_loss}}&nbsp (Rs.)</th>
       </tr>
     </thead>
@@ -122,15 +122,18 @@
         <th></th>
         <th scope="col"style="text-align:left" ></th>
         <th scope="col"style="text-align:left" ></th>
-        <th scope="col"style="text-align:left" >Old Bank Balance<br></th>
-        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" >Old Balance</th>
+        <th scope="col"style="text-align:left" >{{old_balance}}&nbsp (Rs.)</th>
       </tr>
+    </thead>
+    
+    <thead class="thead-dark">
       <tr>
         <th></th>
         <th scope="col"style="text-align:left" ></th>
         <th scope="col"style="text-align:left" ></th>
-        <th scope="col"style="text-align:left" >New Bank Balance<br></th>
-        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" >New Balance</th>
+        <th scope="col"style="text-align:left" >{{new_balance}}&nbsp (Rs.)</th>
       </tr>
     </thead>
   </table>

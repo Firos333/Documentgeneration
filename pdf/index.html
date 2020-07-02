@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       
   </head>
   <body class="p-4 text-primary">
@@ -42,24 +42,22 @@
             <label for="exampleFormControlSelect1">Select Year</label>
             <select input type="text" class="form-control" id="exampleFormControlSelect1" name="year">
               <option>2020</option>
-              <option>2021</option>
-              <option>2022</option>
             </select>
           </div>
         <div class="form-group">
-            <label for="exampleFormControlInput1">Income</label>
+            <label for="exampleFormControlInput1">Income details</label>
             <input input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Give details" name="income">
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Expenditure</label>
+            <label for="exampleFormControlInput1">Expenditure details</label>
             <input input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Give details" name="expenditure">
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Amount</label>
             <input input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Amount" name="amount">
           </div>
-          <br><input type="submit" value="Save and continue"></br>
-        
+          <br><input type="submit" value="Save and continue"></br><br>
+          <button class="btn"><i class="fa fa-download"></i> <a href="http://127.0.0.1:8000/pdf/" >Get PDF</a></button>
       </form>
 
 

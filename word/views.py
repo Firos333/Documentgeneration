@@ -10,32 +10,66 @@ import itertools
 
 class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
-  
-        serial_no_list = Monthly.objects.values_list('serial_No',flat=True)
-        created_date_list = Monthly.objects.values_list('created_date',flat=True)
-        income_list = Monthly.objects.values_list('income',flat=True)
-        expenditure_list = Monthly.objects.values_list('expenditure',flat=True)
-        amount_list = Monthly.objects.values_list('amount',flat=True)
+        last_month1 =Monthly.objects.values_list('month',flat=True)
+        b=0
+        for z in last_month1:
+            last_month = z
+            b=b+1
 
-        total_income1 = Monthly.objects.filter(expenditure=0).aggregate(Sum('amount'))
+        serial_no_list1 = Monthly.objects.filter(month=last_month).values_list('serial_No',flat=True)
+        serial_no_list = []
+        i=1
+        for x in serial_no_list1:
+            serial_no_list.append(i)
+            i= i+1
+        created_date_list = Monthly.objects.filter(month=last_month).values_list('created_date',flat=True)
+        income_list = Monthly.objects.filter(month=last_month).values_list('income',flat=True)
+        expenditure_list = Monthly.objects.filter(month=last_month).values_list('expenditure',flat=True)
+        amount_list = Monthly.objects.filter(month=last_month).values_list('amount',flat=True)
+
+        total_income1 = Monthly.objects.filter(expenditure='',month=last_month).aggregate(Sum('amount'))
         total_income = total_income1.get('amount__sum')
 
-        total_expenditure1= Monthly.objects.filter(income=0).aggregate(Sum('amount'))
+        total_expenditure1= Monthly.objects.filter(income='',month=last_month).aggregate(Sum('amount'))
         total_expenditure = total_expenditure1.get('amount__sum')
 
-        profit_loss = total_income - total_expenditure
+        if total_income ==None:
+            profit_loss= -(total_expenditure)
+        elif total_expenditure ==None:
+            profit_loss= total_income
+        else:
+            profit_loss = total_income - total_expenditure
+
+        last_pk1 = Balance.objects.order_by('id').aggregate(Max('id'))
+        last_pk = last_pk1.get('id__max')
+        old_balance =Balance.objects.values_list('old_balance', flat=True).get(id=last_pk)
+
+        new_balance = int(old_balance) + profit_loss
+        
+
+        secondary = Balance(old_balance=new_balance)
+        secondary.save()
+
+        # for a in last_month1[b-1]:
+        #     second_last_month  = a
+        # if b>2:
+        #     second_last_month  = last_month1[b-2]
+        #     if last_month != second_last_month:
+        #         secondary = Balance(old_balance=new_balance,id=id)
+        #         secondary.save()
 
         combined_list = zip(serial_no_list,created_date_list,income_list,expenditure_list,amount_list)
         data = {
-             'today': datetime.date.today(), 
-             'amount': 39.99,
-            'customer_name': 'Cooper Mann',
-            'order_id': 1233434,
-            'month':'May',
+            'today': datetime.date.today(), 
+            'last_month':last_month,
             'combined_list':combined_list,
             'total_income':total_income,
             'total_expenditure':total_expenditure,
             'profit_loss':profit_loss,
+            'old_balance':old_balance,
+            'new_balance':new_balance,
+            'last_month':last_month,
+       
         }
         pdf = render_to_pdf('invoice.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
