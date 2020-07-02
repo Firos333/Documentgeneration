@@ -1,0 +1,138 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Miltek technologies monthly expenses</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+        </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+            <div class='header'>
+                <h4>Miltek Technologies Pvt.Ltd </h4>
+                <p>{{month}} month Income & Expenditure Account sheet </p>
+            </div>
+        <div>
+        <div class='details'>
+            <hr class='hrItem' />
+        </div>
+    </div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" >Sl.No</th>
+      <th scope="col"style="text-align:center" >Date</th>
+      <th scope="col"style="text-align:center" >Income</th>
+      <th scope="col"style="text-align:center" >Expenditure</th>
+      <th scope="col"style="text-align:center" >Amount &nbsp (Rs.) </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a,b,c,d,e in combined_list %}
+  
+    <tr>
+      <th scope="row">{{a}}</th>
+      <td scope="col"style="text-align:center">{{b}}</td>
+      <td scope="col"style="text-align:center">{{c}}</td>
+      <td scope="col"style="text-align:center" >{{d}}</td>
+      <td scope="col"style="text-align:center">{{e}} /-</td>
+    </tr>
+
+    {% endfor%}
+  </tbody>
+
+</table>
+
+
+<div class='details'>
+    <hr class='hrItem' />
+</div><br>
+
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" >Total Income</th>
+        <th scope="col"style="text-align:left" >{{total_income}}&nbsp (Rs.) </th>
+      </tr>
+    </thead>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" >Total Expenditure</th>
+        <th scope="col"style="text-align:left" >{{total_expenditure}}&nbsp (Rs.)</th>
+      </tr>
+    </thead>
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" >PROFIT/LOSS</th>
+        <th scope="col"style="text-align:left" >{{profit_loss}}&nbsp (Rs.)</th>
+      </tr>
+    </thead>
+  </table>
+
+
+  <div class='details'>
+    <hr class='hrItem' />
+</div><br>
+
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" >Old Bank Balance<br></th>
+        <th scope="col"style="text-align:left" ></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" ></th>
+        <th scope="col"style="text-align:left" >New Bank Balance<br></th>
+        <th scope="col"style="text-align:left" ></th>
+      </tr>
+    </thead>
+  </table>
+    </body>
+</html>
