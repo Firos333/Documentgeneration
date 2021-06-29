@@ -1,6 +1,11 @@
 from django.http import HttpResponse
 from django.views.generic import View
 import datetime
+from docx import Document
+from io import StringIO
+from io import BytesIO
+from docx.shared import Inches
+from django.contrib import messages
 from formss.models import Monthly,Balance
 from word.utils import render_to_pdf #created in step 4
 from django.shortcuts import render,redirect
@@ -89,6 +94,20 @@ def index(request):
             obj= obj+1
         primary=Monthly( serial_No=obj,income=income,expenditure=expenditure,amount=amount,month=month,year=year)
         primary.save()
+        messages.info(request,'Thanks, your monthly updated')
         return render(request,'index.html')
     else:
         return render(request,'index.html')
+
+
+
+def your_view(request):
+    document = Document("my_word_file.docx")
+    for paragraph in document.paragraphs:
+        if 'Contact name' in paragraph.text:
+            paragraph.text = 'new text containing ocean'
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response['Content-Disposition'] = 'attachment; filename=download.docx'
+    document.save(response)
+
+    return response

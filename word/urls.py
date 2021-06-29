@@ -21,4 +21,5 @@ urlpatterns = [
     path('', views.index,name='index'),
     path('admin/', admin.site.urls),
     path('pdf/', GeneratePdf.as_view()),
+     path('invoice/', views.your_view,name='invoice'),
 ]

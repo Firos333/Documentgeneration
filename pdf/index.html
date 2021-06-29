@@ -57,8 +57,12 @@
             <input input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Amount" name="amount">
           </div>
           <br><input type="submit" value="Save and continue"></br><br>
-          <button class="btn"><i class="fa fa-download"></i> <a href="http://127.0.0.1:8000/pdf/" >Get PDF</a></button>
-      </form>
+          {% for message in messages%}
+          <h4> {{message}}</h4>
+          {% endfor%}
+          <button class="btn"><i class="fa fa-download"></i> <a href="http://127.0.0.1:8000/pdf/" > Get PDF</a></button>
+     
+        </form>
 
 
 </body>
